@@ -18,7 +18,7 @@ def load_all_data():
     try:
         tickets_df = pd.read_sql("SELECT * FROM tickets", engine)
        # menu_df = pd.read_sql("SELECT * FROM menu", engine)
-        menu_df = pd.read_sql("SELECT Seq,Type,Category,Pass,Series,Admit,Alloc,'Total Capacity' FROM menu", engine)
+        menu_df = pd.read_sql("""SELECT "Seq", "Type", "Category", "Pass", "Series", "Admit", "Alloc", "Total Capacity" FROM menu """, engine)
 
         # Cleaning & NULL handling
         tickets_df['Visitor_Seats'] = tickets_df['Visitor_Seats'].fillna(0)
@@ -195,3 +195,4 @@ with t4:
         save_to_db(tickets, edited_menu)
 
         st.success("Database Synchronized!")
+
